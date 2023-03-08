@@ -1,12 +1,12 @@
 package fulldict
 
 import (
-	"io/ioutil"
+	_"io/ioutil"
 	"strings"
 	
 	S "github.com/kunox/latdic_go/structs"
 
-	// _"embed"
+	_"embed"
 )
 
 var Primaryword []string
@@ -18,15 +18,15 @@ var Parts [] string
 var start [26]int
 var length [26]int
 
-// //go:embed newfulldict
-// var data string
+//go:embed newfulldict
+var data string
 
 
 func Init() bool {
-	data, err := ioutil.ReadFile("fulldict/newfulldict")
-	if err != nil{
-		return false
-	}
+	// data, err := ioutil.ReadFile("fulldict/newfulldict")
+	// if err != nil{
+	// 	return false
+	// }
 
 	datastring := string(data)
 	lines := strings.Split(datastring, "\r\n")
