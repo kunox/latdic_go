@@ -25,7 +25,7 @@ func Init() bool {
 	}
 	for _,s := range groups {
 		if len(s) > 0 {
-			glines := strings.Split(s, "\r\n")
+			glines := strings.Split(s, "\n")
 			mkey := glines[0]
 			var mval []string
 			for i :=1; i < len(glines)-1 ; i++ {

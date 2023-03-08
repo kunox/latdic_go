@@ -26,7 +26,7 @@ func Init() bool {
 	// 	return false
 	// }
 
-	lines := strings.Split(string(data),"\r\n")
+	lines := strings.Split(string(data),"\n")
 	var prevchar byte= 'a'
 	count := 1
 	seq := 0
