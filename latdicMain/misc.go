@@ -30,7 +30,7 @@ func convertToFinding( dc S.DicContent) S.Findings {
 		// }
 		ret.Attribute = append(ret.Attribute, cord)	
 	}
-	ret.Group = dc.PARTS		///////////////////////////////////C# ?
+	ret.Group = notesa[0]		////////ここにN33などが入る c#では ret.Parts
 	ret.BasicForm = toBasciForm(dc.MEANINGS)
 	ret.Note = ""
 	return ret
