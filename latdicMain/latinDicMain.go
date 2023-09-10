@@ -104,7 +104,7 @@ func Findword(word string) ([]S.ExdicContent, bool){
 					} else if strings.HasPrefix(fd.Group, "PRON1") {
 						exdc.Dic.NOTES += " " + strings.Split(sa[1], ",")[0]	// ADJECT, INDEFなどがfulldic内に応じて入る
 					} else if strings.HasPrefix(fd.Group, "PRON2") {
-						exdc.Dic.NOTES += "PRON" + strings.Split(sa[1], ",")[0]	// PRON2Xは”PRON"が入っていない
+						exdc.Dic.NOTES += "PRON " + strings.Split(sa[1], ",")[0]	// PRON2Xは”PRON"が入っていない
 					} else if fd.Parts == "N" {
 						sagen := strings.Split(sa[1], ",")	// N11 FT,pen,pen,の後半をSplit
 						if fd.Note != sagen[0] {
