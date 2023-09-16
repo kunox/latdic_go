@@ -3,7 +3,7 @@ package fulldict
 import (
 	_"io/ioutil"
 	"strings"
-	
+	"regexp"
 	S "github.com/kunox/latdic_go/structs"
 
 	_"embed"
@@ -29,7 +29,10 @@ func Init() bool {
 	// }
 
 	datastring := string(data)
-	lines := strings.Split(datastring, "\n")
+	reg := "\n|\r\n"
+	lines  := regexp.MustCompile(reg).Split(datastring,-1)
+
+	// lines := strings.Split(datastring, "\n")
 
 	var prevchar byte= 'a'
 	count := 1

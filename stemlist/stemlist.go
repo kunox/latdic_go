@@ -4,6 +4,7 @@ import (
 	_"io/ioutil"
 	"strings"
 	"strconv"
+	"regexp"
 	S "github.com/kunox/latdic_go/structs"
 	_"embed"
 )
@@ -26,7 +27,9 @@ func Init() bool {
 	// 	return false
 	// }
 
-	lines := strings.Split(string(data),"\n")
+	reg := "\n|\r\n"
+	lines := regexp.MustCompile(reg).Split(string(data),-1)
+	// lines := strings.Split(string(data),"\n")		9/14/2023変更
 	var prevchar byte= 'a'
 	count := 1
 	seq := 0
