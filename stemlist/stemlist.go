@@ -18,7 +18,7 @@ var Info [] string
 var start [26]int
 var length [26]int
 
-//go:embed stemList
+//go:embed stemlist
 var data string
 
 func Init() bool {
