@@ -1,7 +1,7 @@
 package stemlist
 
 import (
-	_"io/ioutil"
+	"os"
 	"strings"
 	"strconv"
 	"regexp"
@@ -18,14 +18,14 @@ var Info [] string
 var start [26]int
 var length [26]int
 
-//go:embed stemlist
-var data string
+// //go:embed stemlist
+// var data string
 
 func Init() bool {
-	// data, err := ioutil.ReadFile("stemlist/stemlist")
-	// if err != nil {
-	// 	return false
-	// }
+	data, err := os.ReadFile("stemlist/stemlist")
+	if err != nil {
+		return false
+	}
 
 	reg := "\n|\r\n"
 	lines := regexp.MustCompile(reg).Split(string(data),-1)
