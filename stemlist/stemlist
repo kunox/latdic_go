@@ -57621,6 +57621,7 @@ vers	N41	0	T,M,
 vers	V11	0	DEP,,
 vers	V11	0	X,,
 vers	V31	4	X,,verr
+vers	V31	4	X,,vert
 versabund	ADJ11	0	POS,,
 versar	N11	0	T,F,
 versat	V11	4	DEP,,vers
@@ -57900,6 +57901,8 @@ vigorav	V11	3	X,,vigor
 vigoros	ADJ11	0	POS,,
 vigu	V31	3	X,,vigesc
 vil	ADJ32	0	POS,,
+vili	ADJ32	3	x,,vil
+vilissi	ADJ32	4	x,,vil
 vilesc	V31	0	INTRANS,,
 vilic	N11	0	T,F,
 vilic	N21	0	P,M,
