@@ -25,28 +25,28 @@
 2 ī	2 ae	2 ī	2 ōrum	2 ārum	2 ōrum
 2 ō	2 ae	2 ō	2 īs	2 is	2 is
 2 ō	2 ā	2 ō	2 īs	2 is	2 is
-1 	2 a	2 um	2 ī	2 ae	2 a
+1 	2 a	2 um	2 ī	2 ae	2 a	 	 	 	 	 
 #ADJ13
 1 us	2 a	2 um	2 ī	2 ae	2 a
 2 um	2 am	2 um	2 ōs	2 ās	2 a
 2 īus	2 īus	2 īus	2 ōrum	2 ārum	2 ōrum
 2 i	2 i	2 i	2 īs	2 īs	2 īs
 2 ō	2 ā	2 ō	2 īs	2 īs	2 īs
-1 e	2 a	2 um	2 ī	2 ae	2 a
+1 e	2 a	2 um	2 ī	2 ae	2 a	 	 	 	 	 
 #ADJ14
 1 	2 a	2 um	2 ī	2 ae	2 a
 2 um	2 am	2 um	2 ōs	2 ās	2 a
 2 īus	2 īus	2 īus	2 ōrum	2 ārum	2 ōrum
 2 ī	2 ī	2 ī	2 īs	2 īs	2 īs
 2 ō	2 ā	2 ō	2 īs	2 īs	2 īs
-1 	2 a	2 um	2 ī	2 ae	2 a
+1 	2 a	2 um	2 ī	2 ae	2 a	 	 	 	 	 
 #ADJ15
 1 us	2 a	2 ud	2 ī	2 ae	2 a
 2 um	2 am	2 ud	2 ōs	2 ās	2 a
 3 us	3 us	3 us	2 ōrum	2 ārum	2 rum
 2 ī	2 i	2 i	2 is	2 is	2 is
 2 ō	2 ā	2 ō	2 is	2 is	2 is
-2 e	2 a	2 ud	2 ī	2 e	2 a
+2 e	2 a	2 ud	2 ī	2 e	2 a	 	 	 	 	 
 #ADJ21
 1 os	1 e	1 on	2 i	2 ae	2 a
 2 on	2 en	2 on	2 os	2 as	2 a
@@ -88,21 +88,21 @@
 2 is	2 is	2 is	2 ium	2 ium	2 ium
 2 ī	2 ī	2 ī	2 ibus	2 ibus	2 ibus
 2 ī	2 ī	2 ī	2 ibus	2 ibus	2 ibus
-1 is	1 is	2 e	2 ēs	2 ēs	2 ia
+1 is	1 is	2 e	2 ēs	2 ēs	2 ia	 	 	 	 	 
 #ADJ33
 1 	2 is	2 e	2 ēs	2 ēs	2 ia
 2 em	2 em	2 e	2 ēs	2 ēs	2 ia
 2 is	2 is	2 is	2 ium	2 ium	2 ium
 2 ī	2 ī	2 ī	2 ibus	2 ibus	2 ibus
 2 ī	2 ī	2 ī	2 ibus	2 ibus	2 ibus
-1 	2 is	2 e	2 ēs	2 ēs	2 ia
+1 	2 is	2 e	2 ēs	2 ēs	2 ia 	 	 	 	 
 #ADJ36
 1 	1 	1 	2 es	2 es	2 ia
 2 a	2 a	2 	2 as	2 as	2 ia
 2 os	2 os	2 os	2 ium	2 ium	2 ium
 2 i	2 i	2 i	2 ibus	2 ibus	2 ibus
 2 i	2 i	2 i	2 ibus	2 ibus	2 ibus
-1 	1 	1 	2 es	2 es	2 ia
+1 	1 	1 	2 es	2 es	2 ia	 	 	 	 
 #N11 C
 1 a	2 ae
 2 am	2 ās
@@ -479,6 +479,7 @@
 1 ōc	1 āc	1 ōc	1 īs	1 īs	1 īs
 
 #PRON41
+// 0で始まるのは、語尾だけではなく全体がこの表にある
 0 is	0 ea	0 id	0 eī,iī	0 eae	0 ea
 0 eum	0 eam	0 id	0 eōs	0 eās	0 ea
 0 eius,ejus	0 eius,ejus	0 eius,ejus	0 eōrum	0 eārum	0 eōrum
@@ -507,12 +508,13 @@
 0 tē	0 
 0 tuus	0 	 	 
 #PRON53
-3 	1 ōs
-3 	1 ōs
-3	2 ī,rum
-3 	1 ōbīs
-3 	1 ōbīs
-3	2 er	 	 
+// 複数のみなので前に３つのTab （2024/5/4)
+			1 ōs
+			1 ōs
+			2 ī,rum
+			1 ōbīs
+			1 ōbīs
+			2 er	 	 
 #PRON54
 0 	0 
 0 sē,sēsē	0 sē,sēsē
