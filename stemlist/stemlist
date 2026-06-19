@@ -18014,7 +18014,7 @@ confarreatio	N31	1	T,F,
 confarreation	N31	2	T,F,confarreatio
 confarreav	V11	3	TRANS,,confarre
 confatal	ADJ32	0	POS,,
-confec	V31	3	TRANS,,confaci
+confec	V31	3	TRANS,,confici
 confect	ADJ11	0	POS,,
 confect	V31	4	TRANS,,confici
 confectio	N31	1	T,F,
@@ -25473,7 +25473,8 @@ detepesc	V31	0	INTRANS,,
 detepu	V31	3	INTRANS,,detepesc
 deter	V31	0	TRANS,,
 deterg	V21	0	TRANS,,
-deteri	ADJ11	3	X,,deterior
+//deteri	ADJ11	3	X,,deterior
+deteri	ADJ00	3	COMP,,deteri
 deterior	V11	0	TRANS,,
 deterior	V11	0	X,,
 deteriorat	V11	4	TRANS,,deterior

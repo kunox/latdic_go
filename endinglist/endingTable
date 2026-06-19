@@ -429,11 +429,11 @@
 1 ō	1 ā	1 ō	1 ibus	1 ibus	1 ibus
 
 #PRON12
-1 is	1 is	1 id	1 ī	1 ae	1 ae
-1 em	1 em	1 id	1 ōs	1 ās	1 ae
-2 jus	2 jus	2 jus	1 ōrum	1 ārum	1 ōrum
-2 i	2 i	2 i	1 ibus	1 ibus	1 ibus
-1 ō	1 ō	1 ō	1 ibus	1 ibus	1 ibus
+1 is	1 is,a,ae	1 id	1 ī	1 ae	1 ae,a
+1 em	1 em,am	1 id	1 ōs	1 ās	1 a,ae
+2 jus,ius	2 jus,ius	2 jus,ius	1 ōrum	1 ārum	1 ōrum
+2 i	2 i	2 i	1 ibus,is	1 ibus,is	1 ibus,is
+1 ō	1 ō	1 ō,i	1 ibus,is	1 ibus,is	1 ibus,is
 
 #PRON13
 1 ī	1 ae	1 od	1 ī	1 ae	1 a
@@ -511,7 +511,7 @@
 // 複数のみなので前に３つのTab （2024/5/4)
 			1 ōs
 			1 ōs
-			2 ī,rum
+			2 ī,um
 			1 ōbīs
 			1 ōbīs
 			2 er	 	 
