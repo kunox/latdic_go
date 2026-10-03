@@ -54,7 +54,8 @@ func GetVtable(exdc S.ExdicContent) [][]string {
 func GetPPLTable(exdc S.ExdicContent) [][]string {
 	tname :=""
 	num := strings.Split(exdc.AttrNum, " ")[1]
-	if num =="0" || num =="5"{
+	switch num {
+case "0", "5":
 		part := exdc.Dic.PARTS			// V11 Trans, など
 		tname = strings.Split(part, " ")[0]
 		// switch {										// V1x, V2x, V3xは夫々VPAR10,20,30を使う。それ以外V５2などはそのままVPAR52
@@ -67,7 +68,7 @@ func GetPPLTable(exdc S.ExdicContent) [][]string {
 		case '7' : tname = "VPAR62"
 		default: tname = "VPAR" + tname[1:]
 		}
-	} else if num == "2" || num == "4" {
+	case "2", "4":
 		tname = string("VPAR00")
 	}
 	keys := setupkeys(exdc.Dic)
