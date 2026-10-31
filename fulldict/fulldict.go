@@ -1,26 +1,27 @@
 package fulldict
 
 import (
-	_"io/ioutil"
-	"strings"
+	"fmt"
 	"regexp"
+	"sort"
+	"strings"
+
 	S "github.com/kunox/latdic_go/structs"
 
-	_"embed"
+	_ "embed"
 )
 
 var Primaryword []string
-var Pwordmacron [] string
-var Notes [] string
-var Meanings [] string
-var Parts [] string
+var Pwordmacron []string
+var Notes []string
+var Meanings []string
+var Parts []string
 
 var start [26]int
 var length [26]int
 
 //go:embed newfulldict
 var data string
-
 
 func Init() bool {
 	// data, err := ioutil.ReadFile("fulldict/newfulldict")
@@ -30,42 +31,42 @@ func Init() bool {
 
 	datastring := string(data)
 	reg := "\n|\r\n"
-	lines  := regexp.MustCompile(reg).Split(datastring,-1)
+	lines := regexp.MustCompile(reg).Split(datastring, -1)
 
 	// lines := strings.Split(datastring, "\n")
 
-	var prevchar byte= 'a'
+	var prevchar byte = 'a'
 	count := 1
 	seq := 0
-	start[0] =0
+	start[0] = 0
 
-	for  i :=0; i < len(lines)-1; i++ {
+	for i := 0; i < len(lines)-1; i++ {
 		trimmed := strings.Trim(lines[i], " ")
 		if trimmed[0] != '/' {
 			items := strings.Split(trimmed, "#")
 			if len(items) != 6 {
 				return false
-			} 
+			}
 			macronw := strings.TrimSpace(items[5])
 			if len(macronw) > 0 {
-				 Pwordmacron = append(Pwordmacron, strings.Split(macronw, " ")[0])
-			}else {
+				Pwordmacron = append(Pwordmacron, strings.Split(macronw, " ")[0])
+			} else {
 				Pwordmacron = append(Pwordmacron, "")
 			}
-			Primaryword = append(Primaryword, items[1])	// 大文字、小文字は区別して読み込み、照合時に辻褄を合わせる
-			Notes = append(Notes,items[2] )
+			Primaryword = append(Primaryword, items[1]) // 大文字、小文字は区別して読み込み、照合時に辻褄を合わせる
+			Notes = append(Notes, items[2])
 			Meanings = append(Meanings, items[3])
-			Parts = append(Parts, items[4])	// V11など分類と,で区切られたstem（４個）V11,am,am,amav,amat
-			
+			Parts = append(Parts, items[4]) // V11など分類と,で区切られたstem（４個）V11,am,am,amav,amat
+
 			//副詞の比較級などのための特別処理
 			notesa := strings.Split(items[2], " ")
 			if len(notesa) == 4 && notesa[2] == "ADV" {
-				Primaryword = append(Primaryword, strings.Trim(notesa[0],","))
+				Primaryword = append(Primaryword, strings.Trim(notesa[0], ","))
 				Pwordmacron = append(Pwordmacron, "")
 				Notes = append(Notes, " ADV COMP")
 				Meanings = append(Meanings, items[1])
 				Parts = append(Parts, "3")
-				Primaryword = append(Primaryword,  strings.Trim(notesa[1], ","))
+				Primaryword = append(Primaryword, strings.Trim(notesa[1], ","))
 				Pwordmacron = append(Pwordmacron, "")
 				Notes = append(Notes, " ADV SUPER")
 				Meanings = append(Meanings, items[1])
@@ -81,13 +82,13 @@ func Init() bool {
 			if t != byte(prevchar) {
 				n := t - 'a'
 				start[n] = seq
-				length[n-1] = count		// 'a'の長さ、ここへ来るのは'b'から
+				length[n-1] = count // 'a'の長さ、ここへ来るのは'b'から
 				count = 1
-				seq +=1
+				seq += 1
 				prevchar = t
 			} else {
-				seq +=1
-				count +=1
+				seq += 1
+				count += 1
 			}
 		}
 	}
@@ -95,13 +96,11 @@ func Init() bool {
 	return true
 }
 
-
-
 func Lookup(instring string, macronflag bool) []S.DicContent {
 	instr := strings.ToLower(instring)
-	var ret []S.DicContent 
+	var ret []S.DicContent
 	if len(instr) == 0 {
-		return ret		// len==0
+		return ret // len==0
 	}
 	n := instr[0] - 'a'
 	index := start[n]
@@ -109,19 +108,19 @@ func Lookup(instring string, macronflag bool) []S.DicContent {
 	// count :=0
 	found := false
 
-	for i:=0; i <lenhere ; i++ {
-		if strings.ToLower(Primaryword[i + index]) == instr {
+	for i := 0; i < lenhere; i++ {
+		if strings.ToLower(Primaryword[i+index]) == instr {
 			var tword string
-			if macronflag && len( Pwordmacron[i + index]) > 0 {
-				tword = Pwordmacron[i + index]
+			if macronflag && len(Pwordmacron[i+index]) > 0 {
+				tword = Pwordmacron[i+index]
 			} else {
-				tword = Primaryword[i + index]
+				tword = Primaryword[i+index]
 			}
-			dc := S.DicContent {
-				WORD : tword,
-				NOTES:Notes[i + index], 
-				MEANINGS :Meanings[i + index],
-				 PARTS :Parts[i +index],
+			dc := S.DicContent{
+				WORD:     tword,
+				NOTES:    Notes[i+index],
+				MEANINGS: Meanings[i+index],
+				PARTS:    Parts[i+index],
 			}
 			ret = append(ret, dc)
 			found = true
@@ -134,4 +133,35 @@ func Lookup(instring string, macronflag bool) []S.DicContent {
 	return ret
 }
 
+// queryで始まるすべての語を返す
+func Incremental(inword string, count int) []S.DicContent {
+	query := strings.ToLower(inword)
+	firstchar := query[0]
+	n := firstchar - 'a'
+	index := start[n]
+	lenhere := length[n]
+	ret := []S.DicContent{}
 
+	startindex := sort.Search(lenhere, func(i int) bool {
+		return Primaryword[index+i] >= query
+	})
+	startindex = startindex + index // startindexに戻るのは上記のi
+	endindex := 0
+	for i := startindex; i < lenhere+index; i++ {
+		word := strings.ToLower(Primaryword[i])
+		if !strings.HasPrefix(word, query) {
+			endindex = i
+			break // wordがqueryと同じ語で始まらないようになったらbreak
+		}
+	}
+	for x := startindex; x < endindex; x++ {
+		var dicitem S.DicContent
+		dicitem.WORD = Primaryword[x]
+		dicitem.MEANINGS = Meanings[x]
+		dicitem.NOTES = Notes[x]
+		dicitem.PARTS = Parts[x]
+		ret = append(ret, dicitem)
+	}
+	fmt.Println(len(ret))
+	return ret
+}

@@ -21,6 +21,12 @@ func Init() bool {
 	}
 }
 
+func Incremental(query string) []S.DicContent{
+	ret := Full.Incremental(query, 0)
+	return ret
+}
+
+
 func Findword(word string) ([]S.ExdicContent, bool){
 	ret := []S.ExdicContent {}
 	dcAnswer := []S.DicContent{}
