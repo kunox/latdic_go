@@ -20,7 +20,7 @@ var Parts []string
 var start [26]int
 var length [26]int
 
-//go:embed newfulldict
+//go:embed fulldict_jp_adv
 var data string
 
 func Init() bool {
@@ -59,22 +59,26 @@ func Init() bool {
 			Parts = append(Parts, items[4]) // V11など分類と,で区切られたstem（４個）V11,am,am,amav,amat
 
 			//副詞の比較級などのための特別処理
-			notesa := strings.Split(items[2], " ")
-			if len(notesa) == 4 && notesa[2] == "ADV" {
-				Primaryword = append(Primaryword, strings.Trim(notesa[0], ","))
-				Pwordmacron = append(Pwordmacron, "")
-				Notes = append(Notes, " ADV COMP")
-				Meanings = append(Meanings, items[1])
-				Parts = append(Parts, "3")
-				Primaryword = append(Primaryword, strings.Trim(notesa[1], ","))
-				Pwordmacron = append(Pwordmacron, "")
-				Notes = append(Notes, " ADV SUPER")
-				Meanings = append(Meanings, items[1])
-				Parts = append(Parts, "3")
-				seq += 3
-				count += 3
-				continue
-			}
+			// fulldict_jp_advは事前に処理したものなので以下の処理は不要
+			// 事前にconvert0で変換。そうしないと例えばbeneはmelius, optimeという変化なので
+			//		保管するべき場所が異なるようになる
+			
+			// notesa := strings.Split(items[2], " ")
+			// if len(notesa) == 4 && notesa[2] == "ADV" {
+			// 	Primaryword = append(Primaryword, strings.Trim(notesa[0], ","))
+			// 	Pwordmacron = append(Pwordmacron, "")
+			// 	Notes = append(Notes, " ADV COMP")
+			// 	Meanings = append(Meanings, items[1])
+			// 	Parts = append(Parts, "3")
+			// 	Primaryword = append(Primaryword, strings.Trim(notesa[1], ","))
+			// 	Pwordmacron = append(Pwordmacron, "")
+			// 	Notes = append(Notes, " ADV SUPER")
+			// 	Meanings = append(Meanings, items[1])
+			// 	Parts = append(Parts, "3")
+			// 	seq += 3
+			// 	count += 3
+			// 	continue
+			// }
 			t := items[1][0]
 			if t < 'a' {
 				t = t + 0x20
