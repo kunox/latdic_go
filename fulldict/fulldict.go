@@ -151,7 +151,7 @@ func Incremental(inword string, count int) []S.DicContent {
 	})
 	startindex = startindex + index // startindexに戻るのは上記のi
 	endindex := 0
-	for i := startindex; i < lenhere+index; i++ {
+	for i := startindex; i <= lenhere+index; i++ {
 		word := strings.ToLower(Primaryword[i])
 		if !strings.HasPrefix(word, query) {
 			endindex = i
