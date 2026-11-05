@@ -62,7 +62,7 @@ func Init() bool {
 			// fulldict_jp_advは事前に処理したものなので以下の処理は不要
 			// 事前にconvert0で変換。そうしないと例えばbeneはmelius, optimeという変化なので
 			//		保管するべき場所が異なるようになる
-			
+
 			// notesa := strings.Split(items[2], " ")
 			// if len(notesa) == 4 && notesa[2] == "ADV" {
 			// 	Primaryword = append(Primaryword, strings.Trim(notesa[0], ","))
@@ -147,7 +147,7 @@ func Incremental(inword string, count int) []S.DicContent {
 	ret := []S.DicContent{}
 
 	startindex := sort.Search(lenhere, func(i int) bool {
-		return Primaryword[index+i] >= query
+		return  strings.ToLower(Primaryword[index+i]) >= query
 	})
 	startindex = startindex + index // startindexに戻るのは上記のi
 	endindex := 0
